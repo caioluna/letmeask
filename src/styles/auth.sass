@@ -1,142 +1,123 @@
-#page-auth
+#page-auth 
   display: flex
   align-items: stretch
   height: 100vh
   width: 100vw
 
-header
-  max-width: 676px
+  aside 
+    width: 676px
 
-  display: flex
-  flex: 1
-  flex-direction: column
-  justify-content: center
-  
-  padding-left: 84px
-  
-  background: #835AFD
-  color: #F8F8F8
-
-  img
-    width: 313px
-
-  h1
-    margin-top: 8px
-    max-width: 440px
-
-    font-size: 36px
-    line-height: 42px
-
-  p
-    margin-top: 16px
-    max-width: 400px
-
-    font-size: 24px
-    line-height: 32px
-
-main
-  display: flex
-  flex: 1
-  justify-content: center
-  align-items: center
-
-  width: 100%
-  
-  background: #F8F8F8
-
-  div
-    width: 320px
+    background: #835afd
+    color: #FFF
 
     display: flex
     flex-direction: column
+    justify-content: center
+    
+    padding: 120px 84px
+
+    img 
+      max-width: 320px
+    
+    strong 
+      font: 700 36px 'Poppins', sans-serif
+      line-height: 42px
+      margin-top: 16px
+
+    p 
+      font-size: 24px
+      line-height: 32px
+      margin-top: 16px
+      color: #f8f8f8
+    
+  main 
+    flex: 8
+
+    padding: 0 32px
+
+    display: flex
     align-items: center
     justify-content: center
 
-  h2
-    font-weight: 700
-    font-size: 24px
-    line-height: 36px
-    color: #29292e
-    margin-bottom: 24px
-
-img.letmeask-logo
-  margin-bottom: 56px
-
-button.google-btn
-  display: flex
-  align-items: center
-
-  height: 50px
-  padding: 15px 46px
-  margin-bottom: 32px
-
-  border-radius: 8px
-
-  font-weight: 500
-  background-color: #df4b32 
-  color: #F8F8F8
-  transition: background-color .2s
-
-  cursor: pointer
-
-  &:hover
-    background-color: #c83c24
-
-  &> img
-    margin-right: 8px
-
-form
-  display: flex
-  flex-direction: column
-  justify-content: center
-
-  width: 100%
-
-  p
-    margin-top: 16px
-    font-size: 14px
-    color: #737380
-    text-align: center
-
-    > a
-      color: #e559f9
-      text-decoration: underline
-
-
-  fieldset
-    text-align: center
-    border-top: 1px solid #A8A8B3
-
-    legend
-      padding: 0 16px
-      color: #A8A8B3
-      font-size: 14px
-      margin-bottom: 32px
-
-  input
+  .main-content 
+    display: flex
+    flex-direction: column
     width: 100%
+    max-width: 320px
+    align-items: stretch
+    text-align: center
+
+    > img 
+      align-self: center
+    
+    h2 
+      font-size: 24px
+      margin: 64px 0 24px
+      font-family: 'Poppins', sans-serif
+    
+    form 
+      input 
+        height: 50px
+        border-radius: 8px
+        padding: 0 16px
+        background: #FFF
+        border: 1px solid #a8a8b3
+      
+      button  
+        margin-top: 16px
+      
+      button, input 
+        width: 100%
+      
+    p 
+      font-size: 14px
+      color: #737380
+      margin-top: 16px
+
+      a 
+        color: #e559f9 
+
+  .create-room 
+    margin-top: 64px
     height: 50px
-
-    padding: 16px
-    margin-bottom: 16px
-
-    border: 1px solid #A8A8B3
     border-radius: 8px
-    background-color: #FFFFFF
-    color: #A8A8B3
+    font-weight: 500
+    background: #ea4335
+    color: #FFF
 
-    &::placeholder
-      color: #A8A8B3
+    display: flex
+    justify-content: center
+    align-items: center
 
+    cursor: pointer
+    border: 0
 
-          
+    transition: filter 0.2s
 
-
-
-
+    img 
+      margin-right: 8px
     
+    &:hover 
+      filter: brightness(0.9)
+  
+  .separator 
+    font-size: 14px
+    color: #a8a8b3
+
+    margin: 32px 0
+    display: flex
+    align-items: center
+
+    &::before 
+      content: ''
+      flex: 1
+      height: 1px
+      background: #a8a8b3
+      margin-right: 16px
     
-
-
-
-
+    &::after 
+      content: ''
+      flex: 1
+      height: 1px
+      background: #a8a8b3
+      margin-left: 16px

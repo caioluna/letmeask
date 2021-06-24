@@ -1,44 +1,65 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../App';
+import { FormEvent, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
-import illustrationImg from '../assets/images/illustration.svg'
-import letmeaskLogo from '../assets/images/logo.svg'
+import illustrationImg from "../assets/images/illustration.svg";
+import logoImg from "../assets/images/logo.svg";
 
-import { Button } from '../components/Button';
+import { Button } from "../components/Button";
+import { database } from "../services/firebase";
+import { useAuth } from "../hooks/useAuth";
 
-import '../styles/auth.sass'
+import "../styles/auth.sass";
 
 export function NewRoom() {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth();
+  const history = useHistory();
+  const [newRoom, setNewRoom] = useState("");
+
+  async function handleCreateRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (newRoom.trim() === "") {
+      return;
+    }
+
+    const roomRef = database.ref("rooms");
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id,
+    });
+
+    history.push(`/rooms/${firebaseRoom.key}`);
+  }
 
   return (
     <div id="page-auth">
-
-      <header>
-        <img src={illustrationImg} alt="Chatboxes logo" />
-        <h1>Toda pergunta tem uma resposta.</h1>
+      <aside>
+        <img
+          src={illustrationImg}
+          alt="Ilustração simbolizando perguntas e respostas"
+        />
+        <strong>Toda pergunta tem uma resposta.</strong>
         <p>Aprenda e compartilhe conhecimento com outras pessoas</p>
-      </header>
-
+      </aside>
       <main>
-        <div>
-          <img className="letmeask-logo" src={letmeaskLogo} alt="Letmeask logo" />
-          <h2>Crie uma nova sala</h2>
-
-          <form action="">
-            <label htmlFor="new-room-name">
-              <input className="new-room-name" type="text" placeholder="Nome da sala" />
-            </label>
-            <Button className="button" type="submit">
-              Criar sala
-            </Button>
-            <p>Quer entrar em uma sala já existente? <Link to="/">Clique aqui</Link></p>
+        <div className="main-content">
+          <img src={logoImg} alt="Letmeask" />
+          <h2>Criar uma nova sala</h2>
+          <form onSubmit={handleCreateRoom}>
+            <input
+              type="text"
+              placeholder="Nome da sala"
+              onChange={event => setNewRoom(event.target.value)}
+              value={newRoom}
+            />
+            <Button type="submit">Criar sala</Button>
           </form>
+          <p>
+            Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
+          </p>
         </div>
-
       </main>
-
     </div>
   );
 }
