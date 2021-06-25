@@ -11,12 +11,20 @@
   overflow: hidden
   cursor: pointer
 
+  &:hover 
+    border: 1px solid #6F4BD8
+
+    > div
+      background-color: #6F4BD8
+
   div
-    background: #835afd
+    background-color: #835afd
     padding: 12px
 
     display: grid
     place-items: center
+
+    transition: background .2s
 
     > img
       height: 20px
@@ -29,3 +37,5 @@
     font-family: Roboto, sans-serif
     font-size: 14px
     font-weight: 500
+
+  
